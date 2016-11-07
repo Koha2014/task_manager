@@ -1,102 +1,43 @@
-Yii 2 Basic Project Template
+Управление задачами
 ============================
-
-Yii 2 Basic Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-rapidly creating small projects.
-
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
-
-[![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-app-basic/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-basic/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-basic.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-basic)
-
-DIRECTORY STRUCTURE
--------------------
-
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
-
-
-
-REQUIREMENTS
+СИСТЕМНЕЫЕ ТРЕБОВАНИЯ
 ------------
 
-The minimum requirement by this project template that your Web server supports PHP 5.4.0.
+Apache 2.х
+PHP 5.4
+Mysql 5.х
 
 
-INSTALLATION
+УСТАНОВКА
 ------------
 
 ### Install from an Archive File
 
-Extract the archive file downloaded from [yiiframework.com](http://www.yiiframework.com/download/) to
-a directory named `basic` that is directly under the Web root.
-
-Set cookie validation key in `config/web.php` file to some random secret string:
-
-```php
-'request' => [
-    // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-    'cookieValidationKey' => '<secret random string goes here>',
-],
-```
-
-You can then access the application through the following URL:
-
-~~~
-http://localhost/basic/web/
-~~~
-
-
-### Install via Composer
-
-If you do not have [Composer](http://getcomposer.org/), you may install it by following the instructions
-at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
-
-You can then install this project template using the following command:
-
-~~~
-php composer.phar global require "fxp/composer-asset-plugin:~1.1.1"
-php composer.phar create-project --prefer-dist --stability=dev yiisoft/yii2-app-basic basic
-~~~
-
-Now you should be able to access the application through the following URL, assuming `basic` is the directory
-directly under the Web root.
-
-~~~
-http://localhost/basic/web/
-~~~
-
-
-CONFIGURATION
--------------
-
-### Database
-
-Edit the file `config/db.php` with real data, for example:
-
-```php
-return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
+1. Создать папку для проекта, например 'tasks'
+2. В командной строке выполнить следующую команду для создания локального репозитория
+```[путь к папке tasks] git init```
+3. Далее, в этой же директории выполнить команду 
+```git remote add origin https://github.com/Koha2014/task_manager.git```
+4. Далее, импортируем файлы проекта 
+```git pull origin master```
+5. После того, как файлы импортировались нужно импортировать файлы ядра yii framework, для этого используем composer. 
+В косноли веб-сервера, откроем директорию проекта и выполним следующую команду 
+```composer update```
+6. После загрузки файлов ядра yii, необходимо создать базу данных с названием "tasks_db". 
+При необходимости измените настройки подключения к БД в файле config/db.php
+Настройки по умолчанию:
+ ```php
+ 'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=localhost;dbname=tasks_db',
     'username' => 'root',
-    'password' => '1234',
+    'password' => '',
     'charset' => 'utf8',
-];
-```
+	```
+7. После настройки и создания БД необходимо запустить миграции для генерации таблиц БД.
+Для этого в командной строке вебсервера(в директории проекта) выполните команду 
+```yii migrate```
+8. Теперь можно открыть проект. Если при загрузке страницы возникли ошибки, внимательно проверьте настройки подключения к базе данных. Если в качестве веб-сервера используется не 
+apache, удалите файлы .htaccess из корневой директории и директории /web, вебсервер же настройте исходя из данных в файлах .htaccess.
+9. Чтобы войти в панель управления задачами используйте логин - admin, пароль - admin/
 
-**NOTES:**
-- Yii won't create the database for you, this has to be done manually before you can access it.
-- Check and edit the other files in the `config/` directory to customize your application as required.
-- Refer to the README in the `tests` directory for information specific to basic application tests.
+
