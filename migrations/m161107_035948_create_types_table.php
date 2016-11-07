@@ -17,6 +17,11 @@ class m161107_035948_create_types_table extends Migration
 			'name' => $this->string(255),
 			'default' => $this->integer(3),
         ]);
+		
+		$this->insert('types', [
+            'name' => 'Ошибка',
+			'default' => 1,
+        ]);
     }
 
     /**
